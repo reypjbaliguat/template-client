@@ -11,13 +11,16 @@
     "prettier": "prettier --write */**/*.{js,jsx,json,ts,tsx,scss,css,md}"
   },
   "dependencies": {
+    "jsonwebtoken": "^9.0.2",
     "next": "15.1.4",
+    "next-auth": "^4.24.11",
     "prettier-plugin-tailwindcss": "^0.6.9",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
