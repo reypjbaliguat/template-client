@@ -31,7 +31,7 @@ function Login() {
         try {
             const { data } = await googleLogin({ variables: { token } });
             localStorage.setItem('token', data.googleLogin.token);
-            window.location.href = '/dashboard';
+            window.location.href = '/';
         } catch (err) {
             alert('Google login failed');
         }
@@ -48,7 +48,7 @@ function Login() {
         try {
             const { data } = await login({ variables: { email, password } });
             localStorage.setItem('token', data.login.token);
-            window.location.href = '/dashboard';
+            window.location.href = '/';
         } catch (err) {
             alert('Login failed');
         }
@@ -121,9 +121,7 @@ function Login() {
                     {/* Google Login Button */}
                     <GoogleLogin
                         onSuccess={handleGoogleSuccess}
-                        onError={() => {
-                            console.error('Google Login Failed');
-                        }}
+                        onError={handleGoogleFailure}
                     />
                 </Box>
             </Box>
