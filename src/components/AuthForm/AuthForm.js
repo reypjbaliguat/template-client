@@ -23,7 +23,7 @@ const GOOGLE_LOGIN = gql`
     }
 `;
 
-function AuthForm({ handleFormSubmit, submitLoading }) {
+function AuthForm({ handleFormSubmit, submitLoading, isLogin = true }) {
     const [googleLogin] = useMutation(GOOGLE_LOGIN);
     const { handleSubmit, control, reset } = useForm({
         defaultValues: {
@@ -58,6 +58,8 @@ function AuthForm({ handleFormSubmit, submitLoading }) {
         });
     };
 
+    const headerText = isLogin ? 'Login' : 'Register';
+
     return (
         <GoogleOAuthProvider clientId="671486762103-a64mvno1dst0ihjpald84hd8fba7sckj.apps.googleusercontent.com">
             <Box
@@ -81,7 +83,7 @@ function AuthForm({ handleFormSubmit, submitLoading }) {
                     }}
                 >
                     <Typography variant="h5" gutterBottom>
-                        Login
+                        {headerText}
                     </Typography>
 
                     <Box component="form" onSubmit={handleSubmit(onSubmit)}>
@@ -119,6 +121,31 @@ function AuthForm({ handleFormSubmit, submitLoading }) {
                                 )}
                             />
 
+                            {!isLogin && (
+                                <Controller
+                                    name="confirmPassword"
+                                    control={control}
+                                    rules={{
+                                        required:
+                                            'Confirm Password is required',
+                                    }}
+                                    render={({
+                                        field,
+                                        fieldState: { error },
+                                    }) => (
+                                        <TextField
+                                            {...field}
+                                            label="Confirm Password"
+                                            type="password"
+                                            variant="outlined"
+                                            error={!!error}
+                                            helperText={error?.message}
+                                            fullWidth
+                                        />
+                                    )}
+                                />
+                            )}
+
                             <Button
                                 type="submit"
                                 variant="contained"
@@ -126,7 +153,7 @@ function AuthForm({ handleFormSubmit, submitLoading }) {
                                 color="primary"
                                 loading={submitLoading}
                             >
-                                Login
+                                {headerText}
                             </Button>
                         </Stack>
                     </Box>
@@ -145,9 +172,11 @@ function AuthForm({ handleFormSubmit, submitLoading }) {
                         onError={handleGoogleFailure}
                     />
                     <Grid2 justifyContent={'center'} container pt={2}>
-                        <Link to="/register">
-                            <Typography color="primary">
-                                Need account? Click here{' '}
+                        <Link to={isLogin ? '/register' : '/login'}>
+                            <Typography color="primary" variant="body2">
+                                {isLogin
+                                    ? 'Need account? Click here'
+                                    : 'Already have an account? Login here.'}{' '}
                             </Typography>{' '}
                         </Link>
                     </Grid2>
