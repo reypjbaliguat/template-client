@@ -8,7 +8,6 @@ const SIGN_UP = gql`
         signUp(email: $email, password: $password) {
             id
             email
-            role
             token
         }
     }
@@ -29,6 +28,9 @@ function Register() {
             const { data } = await signUp({
                 variables: { email, password },
             });
+            localStorage.setItem('token', data.signUp.token);
+            localStorage.setItem('id', data.signUp.id);
+            localStorage.setItem('email', data.signUp.email);
             enqueueSnackbar(
                 `User registered successfully! Welcome, ${data.signUp.email}`,
                 {
@@ -36,6 +38,7 @@ function Register() {
                     severity: 'success',
                 },
             );
+            window.location.href = '/';
         } catch (err) {
             enqueueSnackbar('Registration failed. Try again.', {
                 variant: 'alert',

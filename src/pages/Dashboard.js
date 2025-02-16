@@ -5,6 +5,8 @@ import TopNav from '../components/layouts/TopNav';
 function Dashboard() {
     const handleSignOut = () => {
         localStorage.removeItem('token'); // Remove token
+        localStorage.removeItem('id'); // Remove id
+        localStorage.removeItem('email'); // Remove email
         window.location.href = '/login'; // Redirect to login page
     };
     return (

@@ -46,6 +46,8 @@ function AuthForm({ handleFormSubmit, submitLoading, isLogin = true }) {
         try {
             const { data } = await googleLogin({ variables: { token } });
             localStorage.setItem('token', data.googleLogin.token);
+            localStorage.setItem('id', data.googleLogin.id);
+            localStorage.setItem('email', data.googleLogin.email);
             window.location.href = '/';
         } catch (err) {
             alert('Google login failed');
@@ -79,12 +81,12 @@ function AuthForm({ handleFormSubmit, submitLoading, isLogin = true }) {
                 <Box
                     sx={{
                         padding: 4,
-                        margin: 4,
                         borderRadius: 2,
                         boxShadow: 3,
                         backgroundColor: '#ffffff',
-                        maxWidth: 400,
+                        maxWidth: { xs: 270, sm: 400 },
                         width: '100%',
+                        marginTop: 4,
                     }}
                 >
                     <Typography variant="h5" gutterBottom>
