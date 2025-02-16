@@ -1,5 +1,6 @@
-import { Button, Grid2 } from '@mui/material';
+import { Button, Grid2 as Grid } from '@mui/material';
 import React from 'react';
+import TopNav from '../components/layouts/TopNav';
 
 function Dashboard() {
     const handleSignOut = () => {
@@ -7,9 +8,10 @@ function Dashboard() {
         window.location.href = '/login'; // Redirect to login page
     };
     return (
-        <Grid2>
+        <Grid container flexDirection={'column'}>
+            <TopNav />
             <Button onClick={() => handleSignOut()}> Logout </Button>
-        </Grid2>
+        </Grid>
     );
 }
 

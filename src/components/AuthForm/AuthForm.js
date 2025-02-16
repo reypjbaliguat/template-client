@@ -25,6 +25,8 @@ const GOOGLE_LOGIN = gql`
 
 function AuthForm({ handleFormSubmit, submitLoading, isLogin = true }) {
     const [googleLogin] = useMutation(GOOGLE_LOGIN);
+    const logo = `${process.env.PUBLIC_URL}/assets/template-logo.png`;
+
     const { handleSubmit, control, reset } = useForm({
         defaultValues: {
             email: '',
@@ -51,7 +53,7 @@ function AuthForm({ handleFormSubmit, submitLoading, isLogin = true }) {
     };
 
     // Handle Google login failure
-    const handleGoogleFailure = (response) => {
+    const handleGoogleFailure = () => {
         enqueueSnackbar('Google login failed. Please try again.', {
             variant: 'alert',
             severity: 'error',
@@ -70,8 +72,10 @@ function AuthForm({ handleFormSubmit, submitLoading, isLogin = true }) {
                     justifyContent: 'center',
                     alignItems: 'center',
                     backgroundColor: '#f5f5f5',
+                    flexDirection: 'column',
                 }}
             >
+                <img alt="logo" src={logo} height={100} />
                 <Box
                     sx={{
                         padding: 4,
