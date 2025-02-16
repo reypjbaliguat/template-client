@@ -75,6 +75,7 @@ function AuthForm({ handleFormSubmit, submitLoading, isLogin = true }) {
                 <Box
                     sx={{
                         padding: 4,
+                        margin: 4,
                         borderRadius: 2,
                         boxShadow: 3,
                         backgroundColor: '#ffffff',
