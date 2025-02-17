@@ -176,7 +176,7 @@ function AuthForm({ handleFormSubmit, submitLoading, isLogin = true }) {
                     <GoogleLogin
                         onSuccess={handleGoogleSuccess}
                         onError={handleGoogleFailure}
-                        width={400}
+                        width={'100%'}
                     />
                     <Grid2 justifyContent={'center'} container pt={2}>
                         <Link to={isLogin ? '/register' : '/login'}>
