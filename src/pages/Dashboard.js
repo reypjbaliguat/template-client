@@ -32,9 +32,15 @@ function Dashboard() {
                 <CircularProgress />
             ) : (
                 <TemplateContainer>
-                    {data.getTemplates.map(({ id, title, body }) => (
-                        <Template id={id} key={id} title={title} body={body} />
-                    ))}
+                    {data &&
+                        data.getTemplates.map(({ id, title, body }) => (
+                            <Template
+                                id={id}
+                                key={id}
+                                title={title}
+                                body={body}
+                            />
+                        ))}
 
                     <Grid
                         size={{ xs: 12, sm: 6, lg: 3, md: 4 }}
