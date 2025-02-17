@@ -4,51 +4,73 @@ import {
     CardContent,
     Grid2 as Grid,
     TextField,
-    Typography,
 } from '@mui/material';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import EditIcon from '@mui/icons-material/Edit';
+import { Link } from 'react-router-dom';
+import { useRef } from 'react';
+import { enqueueSnackbar } from 'notistack';
 
-function Template() {
+function Template({ title, body, id }) {
+    const bodyRef = useRef();
+    const handleCopy = () => {
+        navigator.clipboard.writeText(bodyRef.current.value);
+        enqueueSnackbar('Successfully copied to clipboard.', {
+            variant: 'alert',
+            severity: 'success',
+        });
+    };
     return (
-        <Grid size={{ xs: 12, sm: 6, lg: 3, md: 4 }} lg>
+        <Grid size={{ xs: 12, sm: 6, lg: 3, md: 4 }}>
             <Card variant="outlined">
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                        Title
-                    </Typography>
+                    <TextField
+                        label="Title"
+                        fullWidth
+                        sx={{
+                            marginBottom: 2,
+                        }}
+                        defaultValue={title}
+                    />
+
                     <TextField
                         id="outlined-multiline-static"
                         label="Body"
+                        inputRef={bodyRef}
                         multiline
                         fullWidth
                         rows={10}
-                        sx={{ color: 'text.secondary' }}
-                        defaultValue="Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging cross all continents except Antarctica Lizards are a widespread group of squamate
-                                reptiles, with over 6,000 species, ranging
-                                across all continents except Antarctica"
+                        defaultValue={body}
                     />
-                    <Grid container spacing={1} mt={2}>
-                        <Grid item size={4}>
+
+                    <Grid
+                        container
+                        justifyContent={'space-between'}
+                        spacing={1}
+                        mt={2}
+                    >
+                        <Grid item size={6}>
                             <Button
                                 color="primary"
-                                variant="contained"
+                                variant="outlined"
+                                startIcon={<ContentCopyIcon />}
                                 fullWidth
+                                onClick={handleCopy}
                             >
                                 Copy
                             </Button>
                         </Grid>
-                        <Grid item size={4}>
-                            <Button
-                                color="success"
-                                variant="contained"
-                                fullWidth
-                            >
-                                Edit
-                            </Button>
-                        </Grid>
-                        <Grid item size={4}>
-                            <Button fullWidth color="error" variant="contained">
-                                Delete
-                            </Button>
+                        <Grid item size={6}>
+                            <Link to={`/template/${id}`}>
+                                <Button
+                                    variant="outlined"
+                                    color="success"
+                                    startIcon={<EditIcon />}
+                                    fullWidth
+                                >
+                                    Edit
+                                </Button>
+                            </Link>
                         </Grid>
                     </Grid>
                 </CardContent>

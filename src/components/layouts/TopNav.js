@@ -7,7 +7,6 @@ function TopNav() {
     const email = localStorage.getItem('email');
     const [open, setOpen] = useState(false);
     const handleOpen = () => {
-        console.log('render');
         setOpen(true);
     };
     const handleClose = () => {

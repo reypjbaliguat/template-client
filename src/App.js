@@ -9,6 +9,7 @@ import Register from './pages/Register';
 import { SnackbarProvider } from 'notistack';
 import StatusSnackbar from './components/StatusSnackBar';
 import './App.css';
+import DashboardDetailsPage from './pages/DashboardDetailsPage';
 
 function App() {
     return (
@@ -30,6 +31,14 @@ function App() {
                             element={
                                 <PrivateRoute>
                                     <Dashboard />
+                                </PrivateRoute>
+                            }
+                        />
+                        <Route
+                            path="/template/:id"
+                            element={
+                                <PrivateRoute>
+                                    <DashboardDetailsPage />
                                 </PrivateRoute>
                             }
                         />
