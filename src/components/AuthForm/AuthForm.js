@@ -63,9 +63,8 @@ function AuthForm({ handleFormSubmit, submitLoading, isLogin = true }) {
     };
 
     const headerText = isLogin ? 'Login' : 'Register';
-
     return (
-        <GoogleOAuthProvider clientId="671486762103-a64mvno1dst0ihjpald84hd8fba7sckj.apps.googleusercontent.com">
+        <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
             <Box
                 sx={{
                     width: '100%',
