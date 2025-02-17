@@ -25,7 +25,7 @@ function Login() {
             localStorage.setItem('email', data.login.email);
             window.location.href = '/';
         } catch (err) {
-            enqueueSnackbar('Invalid credentials', {
+            enqueueSnackbar(err.message, {
                 variant: 'alert',
                 severity: 'error',
             });

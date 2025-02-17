@@ -40,7 +40,7 @@ function Register() {
             );
             window.location.href = '/';
         } catch (err) {
-            enqueueSnackbar('Registration failed. Try again.', {
+            enqueueSnackbar(err.message, {
                 variant: 'alert',
                 severity: 'error',
             });
