@@ -1,3 +1,19 @@
 a {
     text-decoration: none;
 }
+
+/* GOOGLE LOGIN BUTTON */
+.google-button-container {
+    width: 100%; /* Make the container full width */
+}
+
+.google-button-container > div {
+    width: 100% !important; /* Ensure the Google button itself is full width */
+}
+
+/* Optional: Adjust the button's height or other styles */
+.google-button-container > div > div {
+    width: 100% !important;
+    display: flex;
+    justify-content: center; /* Center the button text */
+}

@@ -173,11 +173,13 @@ function AuthForm({ handleFormSubmit, submitLoading, isLogin = true }) {
                     </Typography>
 
                     {/* Google Login Button */}
-                    <GoogleLogin
-                        onSuccess={handleGoogleSuccess}
-                        onError={handleGoogleFailure}
-                        width={'100%'}
-                    />
+                    <div className="google-button-container">
+                        <GoogleLogin
+                            onSuccess={handleGoogleSuccess}
+                            onError={handleGoogleFailure}
+                        />
+                    </div>
+
                     <Grid2 justifyContent={'center'} container pt={2}>
                         <Link to={isLogin ? '/register' : '/login'}>
                             <Typography color="primary" variant="body2">
