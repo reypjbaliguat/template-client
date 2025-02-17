@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogContent, DialogTitle } from '@mui/material';
+import { Box, Button, Dialog, DialogContent } from '@mui/material';
 
 function LogoutDialog({ open, handleClose }) {
     const handleSignOut = () => {
@@ -10,10 +10,23 @@ function LogoutDialog({ open, handleClose }) {
     return (
         <Dialog onClose={handleClose} open={open} sx={{ padding: 4 }}>
             <DialogContent>
-                <Button variant="contained" onClick={handleSignOut}>
-                    {' '}
-                    Logout{' '}
-                </Button>
+                <Box
+                    sx={{
+                        minWidth: 150,
+                        height: 50,
+                        display: 'flex',
+                        alignItems: 'center',
+                    }}
+                >
+                    <Button
+                        fullWidth
+                        variant="contained"
+                        onClick={handleSignOut}
+                    >
+                        {' '}
+                        Logout{' '}
+                    </Button>
+                </Box>
             </DialogContent>
         </Dialog>
     );
