@@ -3,7 +3,6 @@ import { Box, Button, Dialog, DialogContent } from '@mui/material';
 function LogoutDialog({ open, handleClose }) {
     const handleSignOut = () => {
         localStorage.removeItem('token'); // Remove token
-        localStorage.removeItem('id'); // Remove id
         localStorage.removeItem('email'); // Remove email
         window.location.href = '/login'; // Redirect to login page
     };

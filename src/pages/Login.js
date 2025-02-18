@@ -21,7 +21,6 @@ function Login() {
         try {
             const { data } = await login({ variables: { email, password } });
             localStorage.setItem('token', data.login.token);
-            localStorage.setItem('id', data.login.id);
             localStorage.setItem('email', data.login.email);
             window.location.href = '/';
         } catch (err) {

@@ -18,8 +18,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import SaveIcon from '@mui/icons-material/Save';
 
 const CREATE_TEMPLATE_MUTATION = gql`
-    mutation CreateTemplate($title: String!, $body: String!, $userId: ID!) {
-        addTemplate(title: $title, body: $body, userId: $userId) {
+    mutation CreateTemplate($title: String!, $body: String!) {
+        addTemplate(title: $title, body: $body) {
             id
             title
             body
@@ -94,7 +94,6 @@ function DashboardDetailsPage() {
                     variables: {
                         title,
                         body,
-                        userId: localStorage.getItem('id'),
                     },
                 });
                 enqueueSnackbar(

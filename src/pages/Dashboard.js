@@ -8,8 +8,8 @@ import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 
 const GET_TEMPLATES_QUERY = gql`
-    query GetTemplates($userId: ID!) {
-        getTemplates(userId: $userId) {
+    query GetTemplates {
+        getTemplates {
             id
             title
             body
@@ -18,9 +18,7 @@ const GET_TEMPLATES_QUERY = gql`
 `;
 
 function Dashboard() {
-    const { loading, data, refetch } = useQuery(GET_TEMPLATES_QUERY, {
-        variables: { userId: localStorage.getItem('id') },
-    });
+    const { loading, data, refetch } = useQuery(GET_TEMPLATES_QUERY);
     useEffect(() => {
         refetch();
     }, [data]);
