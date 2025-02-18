@@ -4,6 +4,7 @@ import {
     CardContent,
     Grid2 as Grid,
     TextField,
+    Typography,
 } from '@mui/material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import EditIcon from '@mui/icons-material/Edit';
@@ -24,14 +25,9 @@ function Template({ title, body, id }) {
         <Grid size={{ xs: 12, sm: 6, lg: 3, md: 4 }}>
             <Card variant="outlined">
                 <CardContent>
-                    <TextField
-                        label="Title"
-                        fullWidth
-                        sx={{
-                            marginBottom: 2,
-                        }}
-                        defaultValue={title}
-                    />
+                    <Typography variant="h5" gutterBottom>
+                        {title}
+                    </Typography>
 
                     <TextField
                         id="outlined-multiline-static"
