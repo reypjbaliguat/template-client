@@ -2,16 +2,7 @@ import React from 'react';
 import { gql, useMutation } from '@apollo/client';
 import { enqueueSnackbar } from 'notistack';
 import AuthForm from '../components/AuthForm/AuthForm';
-
-const LOGIN = gql`
-    mutation Login($email: String!, $password: String!) {
-        login(email: $email, password: $password) {
-            id
-            email
-            token
-        }
-    }
-`;
+import { LOGIN } from '../queries/auth';
 
 function Login() {
     const [login, { loading }] = useMutation(LOGIN);

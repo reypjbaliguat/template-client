@@ -3,19 +3,10 @@ import TopNav from '../components/layouts/TopNav';
 import TemplateContainer from '../components/template/TemplateContainer';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import Template from '../components/template/Template';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
-
-const GET_TEMPLATES_QUERY = gql`
-    query GetTemplates {
-        getTemplates {
-            id
-            title
-            body
-        }
-    }
-`;
+import { GET_TEMPLATES_QUERY } from '../queries/template';
 
 function Dashboard() {
     const { loading, data, refetch } = useQuery(GET_TEMPLATES_QUERY);

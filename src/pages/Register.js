@@ -1,17 +1,8 @@
 import React from 'react';
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { enqueueSnackbar } from 'notistack';
 import AuthForm from '../components/AuthForm/AuthForm';
-
-const SIGN_UP = gql`
-    mutation SignUp($email: String!, $password: String!) {
-        signUp(email: $email, password: $password) {
-            id
-            email
-            token
-        }
-    }
-`;
+import { SIGN_UP } from '../queries/auth';
 
 function Register() {
     const [signUp] = useMutation(SIGN_UP);

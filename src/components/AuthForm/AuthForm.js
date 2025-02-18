@@ -8,20 +8,11 @@ import {
     Stack,
     Grid2,
 } from '@mui/material';
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import { Link } from 'react-router-dom';
 import { enqueueSnackbar } from 'notistack';
-
-const GOOGLE_LOGIN = gql`
-    mutation GoogleLogin($token: String!) {
-        googleLogin(token: $token) {
-            id
-            email
-            token
-        }
-    }
-`;
+import { GOOGLE_LOGIN } from '../../queries/auth';
 
 function AuthForm({ handleFormSubmit, submitLoading, isLogin = true }) {
     const [googleLogin] = useMutation(GOOGLE_LOGIN);

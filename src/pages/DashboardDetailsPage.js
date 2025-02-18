@@ -16,46 +16,12 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SaveIcon from '@mui/icons-material/Save';
-
-const CREATE_TEMPLATE_MUTATION = gql`
-    mutation CreateTemplate($title: String!, $body: String!) {
-        addTemplate(title: $title, body: $body) {
-            id
-            title
-            body
-        }
-    }
-`;
-
-const UPDATE_TEMPLATE_MUTATION = gql`
-    mutation UpdateTemplate($id: ID!, $title: String, $body: String) {
-        updateTemplate(id: $id, title: $title, body: $body) {
-            id
-            title
-            body
-            updatedAt
-        }
-    }
-`;
-
-const GET_TEMPLATE_QUERY = gql`
-    query GetTemplate($id: ID!) {
-        getTemplate(id: $id) {
-            id
-            title
-            body
-        }
-    }
-`;
-
-const DELETE_TEMPLATE_MUTATION = gql`
-    mutation DeleteTemplate($id: ID!) {
-        deleteTemplate(id: $id) {
-            id
-            title
-        }
-    }
-`;
+import {
+    CREATE_TEMPLATE_MUTATION,
+    DELETE_TEMPLATE_MUTATION,
+    GET_TEMPLATE_QUERY,
+    UPDATE_TEMPLATE_MUTATION,
+} from '../queries/template';
 
 function DashboardDetailsPage() {
     const navigate = useNavigate();
