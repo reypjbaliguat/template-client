@@ -1,5 +1,5 @@
 import React from 'react';
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { enqueueSnackbar } from 'notistack';
 import AuthForm from '../components/AuthForm/AuthForm';
 import { LOGIN } from '../queries/auth';

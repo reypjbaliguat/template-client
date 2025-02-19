@@ -1,4 +1,4 @@
-import { Button, Grid2 as Grid, Typography } from '@mui/material';
+import { Grid2 as Grid, Typography } from '@mui/material';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import LogoutDialog from '../dialogs/LogoutDialog';
