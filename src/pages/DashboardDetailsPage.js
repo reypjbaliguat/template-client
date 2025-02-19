@@ -133,7 +133,7 @@ function DashboardDetailsPage() {
         <Box
             sx={{
                 width: '100%',
-                height: '100vh',
+                height: 'calc(100vh - 60px)',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',

@@ -16,7 +16,6 @@ function Dashboard() {
 
     return (
         <Grid container flexDirection={'column'}>
-            <TopNav />
             {loading ? (
                 <CircularProgress />
             ) : (
@@ -37,6 +36,7 @@ function Dashboard() {
                             border: '1px solid hsl(215, 15%, 92%)',
                             borderRadius: 4,
                             minHeight: 400,
+                            maxHeight: 300,
                             display: 'flex',
                             justifyContent: 'center',
                             alignItems: 'center',
