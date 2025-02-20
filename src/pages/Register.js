@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { enqueueSnackbar } from 'notistack';
 import AuthForm from '../components/AuthForm/AuthForm';
 import { SIGN_UP } from '../queries/auth';
+import OTPForm from '../components/AuthForm/OTPForm';
 
 function Register() {
     const [signUp] = useMutation(SIGN_UP);
+    const [page, setPage] = useState('otp');
     const handleSubmit = async (data) => {
         const { password, confirmPassword, email } = data;
         if (password !== confirmPassword) {
@@ -38,7 +40,14 @@ function Register() {
         }
     };
 
-    return <AuthForm handleFormSubmit={handleSubmit} isLogin={false} />;
+    switch (page) {
+        case 'register':
+            return <AuthForm handleFormSubmit={handleSubmit} isLogin={false} />;
+        case 'otp':
+            return <OTPForm />;
+        default:
+            return <></>;
+    }
 }
 
 export default Register;

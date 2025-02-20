@@ -13,10 +13,10 @@ import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import { Link } from 'react-router-dom';
 import { enqueueSnackbar } from 'notistack';
 import { GOOGLE_LOGIN } from '../../queries/auth';
+import AuthContainer from '../layouts/AuthContainer';
 
 function AuthForm({ handleFormSubmit, submitLoading, isLogin = true }) {
     const [googleLogin] = useMutation(GOOGLE_LOGIN);
-    const logo = `${process.env.PUBLIC_URL}/assets/template-logo.png`;
 
     const { handleSubmit, control, reset } = useForm({
         defaultValues: {
@@ -56,59 +56,53 @@ function AuthForm({ handleFormSubmit, submitLoading, isLogin = true }) {
     const headerText = isLogin ? 'Login' : 'Register';
     return (
         <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
-            <Box
-                sx={{
-                    width: '100%',
-                    height: '100vh',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: '#f5f5f5',
-                    flexDirection: 'column',
-                }}
-            >
-                <img alt="logo" src={logo} height={100} />
-                <Box
-                    sx={{
-                        padding: 4,
-                        borderRadius: 2,
-                        boxShadow: 3,
-                        backgroundColor: '#ffffff',
-                        maxWidth: { xs: 270, sm: 400 },
-                        width: '100%',
-                        marginTop: 4,
-                    }}
-                >
-                    <Typography variant="h5" gutterBottom>
-                        {headerText}
-                    </Typography>
+            <AuthContainer headerText={headerText}>
+                <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+                    <Stack spacing={2}>
+                        <Controller
+                            name="email"
+                            control={control}
+                            rules={{ required: 'Email is required' }}
+                            render={({ field, fieldState: { error } }) => (
+                                <TextField
+                                    {...field}
+                                    label="Email"
+                                    type="email"
+                                    variant="outlined"
+                                    error={!!error}
+                                    helperText={error?.message}
+                                    fullWidth
+                                />
+                            )}
+                        />
+                        <Controller
+                            name="password"
+                            control={control}
+                            rules={{ required: 'Password is required' }}
+                            render={({ field, fieldState: { error } }) => (
+                                <TextField
+                                    {...field}
+                                    label="Password"
+                                    type="password"
+                                    variant="outlined"
+                                    error={!!error}
+                                    helperText={error?.message}
+                                    fullWidth
+                                />
+                            )}
+                        />
 
-                    <Box component="form" onSubmit={handleSubmit(onSubmit)}>
-                        <Stack spacing={2}>
+                        {!isLogin && (
                             <Controller
-                                name="email"
+                                name="confirmPassword"
                                 control={control}
-                                rules={{ required: 'Email is required' }}
+                                rules={{
+                                    required: 'Confirm Password is required',
+                                }}
                                 render={({ field, fieldState: { error } }) => (
                                     <TextField
                                         {...field}
-                                        label="Email"
-                                        type="email"
-                                        variant="outlined"
-                                        error={!!error}
-                                        helperText={error?.message}
-                                        fullWidth
-                                    />
-                                )}
-                            />
-                            <Controller
-                                name="password"
-                                control={control}
-                                rules={{ required: 'Password is required' }}
-                                render={({ field, fieldState: { error } }) => (
-                                    <TextField
-                                        {...field}
-                                        label="Password"
+                                        label="Confirm Password"
                                         type="password"
                                         variant="outlined"
                                         error={!!error}
@@ -117,71 +111,46 @@ function AuthForm({ handleFormSubmit, submitLoading, isLogin = true }) {
                                     />
                                 )}
                             />
+                        )}
 
-                            {!isLogin && (
-                                <Controller
-                                    name="confirmPassword"
-                                    control={control}
-                                    rules={{
-                                        required:
-                                            'Confirm Password is required',
-                                    }}
-                                    render={({
-                                        field,
-                                        fieldState: { error },
-                                    }) => (
-                                        <TextField
-                                            {...field}
-                                            label="Confirm Password"
-                                            type="password"
-                                            variant="outlined"
-                                            error={!!error}
-                                            helperText={error?.message}
-                                            fullWidth
-                                        />
-                                    )}
-                                />
-                            )}
-
-                            <Button
-                                type="submit"
-                                variant="contained"
-                                fullWidth
-                                color="primary"
-                                loading={submitLoading}
-                            >
-                                {headerText}
-                            </Button>
-                        </Stack>
-                    </Box>
-
-                    <Typography
-                        variant="body1"
-                        align="center"
-                        sx={{ marginY: 2, fontWeight: 'bold' }}
-                    >
-                        OR
-                    </Typography>
-
-                    {/* Google Login Button */}
-                    <div className="google-button-container">
-                        <GoogleLogin
-                            onSuccess={handleGoogleSuccess}
-                            onError={handleGoogleFailure}
-                        />
-                    </div>
-
-                    <Grid2 justifyContent={'center'} container pt={2}>
-                        <Link to={isLogin ? '/register' : '/login'}>
-                            <Typography color="primary" variant="body2">
-                                {isLogin
-                                    ? 'Need account? Click here'
-                                    : 'Already have an account? Login here.'}{' '}
-                            </Typography>{' '}
-                        </Link>
-                    </Grid2>
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            fullWidth
+                            color="primary"
+                            loading={submitLoading}
+                        >
+                            {headerText}
+                        </Button>
+                    </Stack>
                 </Box>
-            </Box>
+
+                <Typography
+                    variant="body1"
+                    align="center"
+                    sx={{ marginY: 2, fontWeight: 'bold' }}
+                >
+                    OR
+                </Typography>
+
+                {/* Google Login Button */}
+                <div className="google-button-container">
+                    <GoogleLogin
+                        onSuccess={handleGoogleSuccess}
+                        onError={handleGoogleFailure}
+                    />
+                </div>
+
+                <Grid2 justifyContent={'center'} container pt={2}>
+                    <Link to={isLogin ? '/register' : '/login'}>
+                        <Typography color="primary" variant="body2">
+                            {isLogin
+                                ? 'Need account? Click here'
+                                : 'Already have an account? Login here.'}{' '}
+                        </Typography>{' '}
+                    </Link>
+                </Grid2>
+            </AuthContainer>
         </GoogleOAuthProvider>
     );
 }
