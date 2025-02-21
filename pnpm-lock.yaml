@@ -34,6 +34,9 @@ importers:
             graphql:
                 specifier: ^16.10.0
                 version: 16.10.0
+            mui-one-time-password-input:
+                specifier: ^3.0.2
+                version: 3.0.2(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.0.0))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.0.0))(@types/react@19.0.8)(react@19.0.0))(@mui/material@6.4.4(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.0.0))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.0.0))(@types/react@19.0.8)(react@19.0.0))(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
             notistack:
                 specifier: ^3.0.2
                 version: 3.0.2(csstype@3.1.3)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -6626,6 +6629,22 @@ packages:
             {
                 integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==,
             }
+
+    mui-one-time-password-input@3.0.2:
+        resolution:
+            {
+                integrity: sha512-JK/DlPOZ9tr7B7CmXXzTaLJtRN2IVfF1iGQpDvloXwPa3LoxT8WWIbUgKoSyF7fO2Lvuo9QRJMFoHgomK0CcIQ==,
+            }
+        peerDependencies:
+            '@emotion/react': ^11.13.0
+            '@emotion/styled': ^11.13.0
+            '@mui/material': ^6.0.0
+            '@types/react': ^18.0.0
+            react: ^18.0.0
+            react-dom: ^18.0.0
+        peerDependenciesMeta:
+            '@types/react':
+                optional: true
 
     multicast-dns@7.2.5:
         resolution:
@@ -14751,6 +14770,16 @@ snapshots:
     ms@2.0.0: {}
 
     ms@2.1.3: {}
+
+    mui-one-time-password-input@3.0.2(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.0.0))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.0.0))(@types/react@19.0.8)(react@19.0.0))(@mui/material@6.4.4(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.0.0))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.0.0))(@types/react@19.0.8)(react@19.0.0))(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+        dependencies:
+            '@emotion/react': 11.14.0(@types/react@19.0.8)(react@19.0.0)
+            '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.0.0))(@types/react@19.0.8)(react@19.0.0)
+            '@mui/material': 6.4.4(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.0.0))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.0.0))(@types/react@19.0.8)(react@19.0.0))(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+            react: 19.0.0
+            react-dom: 19.0.0(react@19.0.0)
+        optionalDependencies:
+            '@types/react': 19.0.8
 
     multicast-dns@7.2.5:
         dependencies:

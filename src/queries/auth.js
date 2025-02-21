@@ -12,11 +12,7 @@ export const LOGIN = gql`
 
 export const SIGN_UP = gql`
     mutation SignUp($email: String!, $password: String!) {
-        signUp(email: $email, password: $password) {
-            id
-            email
-            token
-        }
+        signUp(email: $email, password: $password)
     }
 `;
 
@@ -27,5 +23,21 @@ export const GOOGLE_LOGIN = gql`
             email
             token
         }
+    }
+`;
+
+export const VERIFY_OTP = gql`
+    mutation VerifyOTP($email: String!, $otpCode: String!) {
+        verifyOTP(email: $email, otpCode: $otpCode) {
+            id
+            email
+            token
+        }
+    }
+`;
+
+export const RESEND_OTP = gql`
+    mutation ResendOTP($email: String!) {
+        resendOTP(email: $email)
     }
 `;

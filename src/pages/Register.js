@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { enqueueSnackbar } from 'notistack';
 import AuthForm from '../components/AuthForm/AuthForm';
-import { SIGN_UP } from '../queries/auth';
+import { RESEND_OTP, SIGN_UP } from '../queries/auth';
 import OTPForm from '../components/AuthForm/OTPForm';
 
 function Register() {
-    const [signUp] = useMutation(SIGN_UP);
-    const [page, setPage] = useState('otp');
+    const [signUp, { loading }] = useMutation(SIGN_UP);
+    const [resendOTP] = useMutation(RESEND_OTP);
+    const [page, setPage] = useState('register');
+    const [otpEmail, setOTPEmail] = useState('');
     const handleSubmit = async (data) => {
         const { password, confirmPassword, email } = data;
         if (password !== confirmPassword) {
@@ -17,21 +19,34 @@ function Register() {
             });
             return;
         }
+
         try {
             const { data } = await signUp({
                 variables: { email, password },
             });
-            localStorage.setItem('token', data.signUp.token);
-            localStorage.setItem('id', data.signUp.id);
-            localStorage.setItem('email', data.signUp.email);
-            enqueueSnackbar(
-                `User registered successfully! Welcome, ${data.signUp.email}`,
-                {
-                    variant: 'alert',
-                    severity: 'success',
-                },
-            );
-            window.location.href = '/';
+            enqueueSnackbar(data.signUp, {
+                variant: 'alert',
+                severity: 'success',
+            });
+            setOTPEmail(email);
+            setPage('otp');
+        } catch (err) {
+            enqueueSnackbar(err.message, {
+                variant: 'alert',
+                severity: 'error',
+            });
+        }
+    };
+
+    const handleResend = async () => {
+        try {
+            const { data: resendData } = await resendOTP({
+                variables: { email: otpEmail },
+            });
+            enqueueSnackbar(resendData.resendOTP, {
+                variant: 'alert',
+                severity: 'success',
+            });
         } catch (err) {
             enqueueSnackbar(err.message, {
                 variant: 'alert',
@@ -42,9 +57,15 @@ function Register() {
 
     switch (page) {
         case 'register':
-            return <AuthForm handleFormSubmit={handleSubmit} isLogin={false} />;
+            return (
+                <AuthForm
+                    submitLoading={loading}
+                    handleFormSubmit={handleSubmit}
+                    isLogin={false}
+                />
+            );
         case 'otp':
-            return <OTPForm />;
+            return <OTPForm otpEmail={otpEmail} onResend={handleResend} />;
         default:
             return <></>;
     }
