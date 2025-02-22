@@ -15,6 +15,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SaveIcon from '@mui/icons-material/Save';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {
     CREATE_TEMPLATE_MUTATION,
     DELETE_TEMPLATE_MUTATION,
@@ -135,12 +136,20 @@ function DashboardDetailsPage() {
                 width: '100%',
                 height: 'calc(100vh - 60px)',
                 display: 'flex',
+                position: 'relative',
                 justifyContent: 'center',
                 alignItems: 'center',
                 backgroundColor: '#f5f5f5',
                 flexDirection: 'column',
             }}
         >
+            <Button
+                variant="contained"
+                startIcon={<ArrowBackIcon />}
+                onClick={() => navigate(-1)}
+            >
+                Back
+            </Button>
             <Box
                 sx={{
                     padding: 4,
