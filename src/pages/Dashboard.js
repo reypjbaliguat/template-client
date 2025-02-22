@@ -47,7 +47,16 @@ function Dashboard() {
                             },
                         }}
                     >
-                        <Link to="/template/create">
+                        <Link
+                            to="/template/create"
+                            style={{
+                                display: 'flex',
+                                height: '100%',
+                                width: '100%',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                            }}
+                        >
                             <AddCircleOutlineIcon
                                 color="primary"
                                 fontSize="large"
